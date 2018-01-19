@@ -11,9 +11,7 @@ CREATE TABLE IF NOT EXISTS hike (
 
 CREATE TABLE IF NOT EXISTS location (
   id int PRIMARY KEY auto_increment,
-  locationDistance INT,
-  locationDifficulty INT,
-  locationCity VARCHAR,
-  locationState VARCHAR,
-  locationCountry VARCHAR
+  nameCity VARCHAR,
+  nameState VARCHAR,
+  nameCountry VARCHAR
 );
