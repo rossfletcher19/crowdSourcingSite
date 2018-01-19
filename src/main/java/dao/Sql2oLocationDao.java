@@ -1,5 +1,6 @@
 package dao;
 
+import models.Hike;
 import models.Location;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
@@ -52,6 +53,15 @@ public class Sql2oLocationDao implements LocationDao {
             return con.createQuery("SELECT * FROM location WHERE id = :id")
                     .addParameter("id", locationId)
                     .executeAndFetchFirst(Location.class);
+        }
+    }
+
+    @Override
+    public  List<Hike> getAllHikesByLocation(int locationId) {
+        try (Connection con = sql2o.open()) {
+            return con.createQuery("SELECT * FROM hike WHERE locationId = :locationId")
+                    .addParameter("locationId", locationId)
+                    .executeAndFetch(Hike.class);
         }
     }
 

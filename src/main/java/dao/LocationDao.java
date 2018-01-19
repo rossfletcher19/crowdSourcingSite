@@ -14,7 +14,7 @@ public interface LocationDao {
 //
     List<Location> getAll();
 
-//    List<Hike> getAllHikesByLocation(int locationId);
+    List<Hike> getAllHikesByLocation(int locationId);
 //
     Location findById(int id);
 //

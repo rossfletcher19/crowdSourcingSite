@@ -1,5 +1,6 @@
 package dao;
 
+import models.Hike;
 import models.Location;
 import org.junit.After;
 import org.junit.Before;
@@ -8,8 +9,7 @@ import org.sql2o.Sql2o;
 
 import org.sql2o.Connection;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.*;
 
 /**
  * Created by Guest on 1/18/18.
@@ -61,6 +61,23 @@ public class Sql2oLocationDaoTest {
         locationDao.add(location);
         Location foundLocation = locationDao.findById(location.getId());
         assertEquals(location, foundLocation);
+    }
+
+    @Test
+    public void getAllHikesByLocationReturnsHikesCorrectly() throws Exception {
+        Location location = setupNewLocation();
+        locationDao.add(location);
+        int locationId = location.getId();
+        Hike newHike = new Hike("Opal Creek", "LyonsOR", "Beautiful Blue Pools", 5, locationId);
+        Hike otherHike = new Hike("Mt. Hood Hike", "Government Camp", "Great forest hike", 5, locationId);
+        Hike thirdHike = new Hike("Silver Falls", "SublimityOR", "Beautiful Water Falls", 5, locationId);
+        hikeDao.add(newHike);
+        hikeDao.add(otherHike);
+
+        assertTrue(locationDao.getAllHikesByLocation(locationId).size() == 2);
+        assertTrue(locationDao.getAllHikesByLocation(locationId).contains(newHike));
+        assertTrue(locationDao.getAllHikesByLocation(locationId).contains(otherHike));
+        assertFalse(locationDao.getAllHikesByLocation(locationId).contains(thirdHike));
     }
 
 
