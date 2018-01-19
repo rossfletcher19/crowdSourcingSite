@@ -66,7 +66,7 @@ public class Sql2oHikeDaoTest {
         Hike hike2 = setupNewHike();
         hikeDao.add(hike);
         hikeDao.add(hike2);
-        assertEquals(1, hikeDao.getAll().size());
+        assertEquals(2, hikeDao.getAll().size());
     }
 
     @Test
