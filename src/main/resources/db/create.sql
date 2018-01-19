@@ -6,8 +6,7 @@ CREATE TABLE IF NOT EXISTS hike (
   locationOfHike VARCHAR,
   notesOnHike VARCHAR,
   ratingHike INT,
-  hikeCompleted BOOLEAN,
-  locationId INT,
+  locationId INT
 );
 
 CREATE TABLE IF NOT EXISTS location (
@@ -16,5 +15,5 @@ CREATE TABLE IF NOT EXISTS location (
   locationDifficulty INT,
   locationCity VARCHAR,
   locationState VARCHAR,
-  locationCountry VARCHAR,
+  locationCountry VARCHAR
 );

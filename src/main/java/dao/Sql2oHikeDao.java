@@ -25,7 +25,14 @@ public class Sql2oHikeDao implements HikeDao {
         String sql = "INSERT INTO hike (nameOfHike, locationOfHike, notesOnHike, ratingHike) VALUES (:nameOfHike, :locationOfHike, :notesOnHike, :ratingHike)";
         try (Connection con = sql2o.open()){
             int id = (int) con.createQuery(sql)
-                    .bind(hike)
+                    .addParameter("nameOfHike", hike.getNameOfHike())
+                    .addParameter("locationOfHike", hike.getLocationOfHike())
+                    .addParameter("notesOnHike", hike.getNotesOnHike())
+                    .addParameter("ratingHike", hike.getRatingHike())
+                    .addColumnMapping("NAMEOFHIKE", "nameOfHike")
+                    .addColumnMapping("LOCATIONOFHIKE", "locationOfHike")
+                    .addColumnMapping("NOTESONHIKE", "notesOnHike")
+                    .addColumnMapping("RATINGHIKE", "ratingHike")
                     .executeUpdate()
                     .getKey();
             hike.setId(id);
@@ -33,6 +40,15 @@ public class Sql2oHikeDao implements HikeDao {
             System.out.println(ex);
         }
 
+    }
+
+    @Override
+    public Hike getById(int id) {
+        try (Connection con = sql2o.open()) {
+            return con.createQuery("SELECT * FROM hike WHERE id = :id")
+                    .addParameter("id", id)
+                    .executeAndFetchFirst(Hike.class);
+        }
     }
 
 }

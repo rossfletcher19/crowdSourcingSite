@@ -8,7 +8,6 @@ public class Hike {
     private String locationOfHike;
     private String notesOnHike;
     private int ratingHike;
-    private boolean completedHike;
     private int id;
     private int locationId;
 
@@ -17,7 +16,6 @@ public class Hike {
         this.locationOfHike = locationOfHike;
         this.notesOnHike = notesOnHike;
         this.ratingHike = ratingHike;
-        this.completedHike = completedHike;
         this.locationId = locationId;
     }
 
@@ -46,6 +44,7 @@ public class Hike {
     public int getId() {
         return id;
     }
+
 
     // Setters
 
@@ -80,18 +79,21 @@ public class Hike {
 
         Hike hike = (Hike) o;
 
-        if (ratingHike != hike.ratingHike) return false;
-        if (completedHike != hike.completedHike) return false;
-        if (!nameOfHike.equals(hike.nameOfHike)) return false;
-        return locationOfHike.equals(hike.locationOfHike);
+        if (id != hike.id) return false;
+        if (locationId != hike.locationId) return false;
+        if (nameOfHike != null ? !nameOfHike.equals(hike.nameOfHike) : hike.nameOfHike != null) return false;
+        if (locationOfHike != null ? !locationOfHike.equals(hike.locationOfHike) : hike.locationOfHike != null)
+            return false;
+        return notesOnHike != null ? notesOnHike.equals(hike.notesOnHike) : hike.notesOnHike == null;
     }
 
     @Override
     public int hashCode() {
-        int result = nameOfHike.hashCode();
-        result = 31 * result + locationOfHike.hashCode();
-        result = 31 * result + ratingHike;
-        result = 31 * result + (completedHike ? 1 : 0);
+        int result = nameOfHike != null ? nameOfHike.hashCode() : 0;
+        result = 31 * result + (locationOfHike != null ? locationOfHike.hashCode() : 0);
+        result = 31 * result + (notesOnHike != null ? notesOnHike.hashCode() : 0);
+        result = 31 * result + id;
+        result = 31 * result + locationId;
         return result;
     }
 }

@@ -12,9 +12,9 @@ public interface HikeDao {
     void add(Hike hike);
 
 //    List<Hike> getAll();
-//
-//    Hike getById(int id);
-//
+
+    Hike getById(int id);
+
 //    void update(String nameOfHike, String locationOfHike, String notesOnHike, int ratingHike, int id, int locationId);
 //
 //    void deleteById(int id);
