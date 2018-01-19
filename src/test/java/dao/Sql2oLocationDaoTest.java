@@ -50,6 +50,20 @@ public class Sql2oLocationDaoTest {
         assertEquals(1, locationDao.getAll().size());
     }
 
+    @Test
+    public void noLocationsReturnsEmptyList() throws Exception {
+        assertEquals(0, locationDao.getAll().size());
+    }
+
+    @Test
+    public void existingLocationsCanBeFoundById() throws Exception {
+        Location location = setupNewLocation();
+        locationDao.add(location);
+        Location foundLocation = locationDao.findById(location.getId());
+        assertEquals(location, foundLocation);
+    }
+
+
 
 
     public Location setupNewLocation() {

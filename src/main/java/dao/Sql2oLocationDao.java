@@ -46,5 +46,14 @@ public class Sql2oLocationDao implements LocationDao {
         }
     }
 
+    @Override
+    public Location findById(int locationId) {
+        try (Connection con = sql2o.open()) {
+            return con.createQuery("SELECT * FROM location WHERE id = :id")
+                    .addParameter("id", locationId)
+                    .executeAndFetchFirst(Location.class);
+        }
+    }
+
 
 }
