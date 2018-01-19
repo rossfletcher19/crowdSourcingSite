@@ -66,4 +66,21 @@ public class Sql2oLocationDao implements LocationDao {
     }
 
 
+    @Override
+    public void update(int id, String newNameCity, String newNameState, String newNameCountry) {
+        String sql = "UPDATE location SET nameCity = :nameCity, nameState = :nameState, nameCountry = :nameCountry WHERE id=:id";
+        try(Connection con = sql2o.open()){
+            con.createQuery(sql)
+                    .addParameter("nameCity", newNameCity)
+                    .addParameter("nameState", newNameState)
+                    .addParameter("nameCountry", newNameCountry)
+                    .addParameter("id", id)
+                    .executeUpdate();
+        } catch (Sql2oException ex) {
+            System.out.println(ex);
+        }
+
+    }
+
+
 }

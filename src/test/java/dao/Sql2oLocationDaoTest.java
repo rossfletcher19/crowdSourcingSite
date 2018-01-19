@@ -80,6 +80,22 @@ public class Sql2oLocationDaoTest {
         assertFalse(locationDao.getAllHikesByLocation(locationId).contains(thirdHike));
     }
 
+    @Test
+    public void updateChangesLocationContent() throws Exception {
+        String initialCityName = "Portland";
+        Location location = new Location(initialCityName, "Oregon", "USA", 1);
+        locationDao.add(location);
+
+        locationDao.update(location.getId(), "SW Portland", "Oregon", "USA");
+        Location updatedLocation = locationDao.findById(location.getId());
+        assertNotEquals(initialCityName, updatedLocation.getNameCity());
+
+    }
+
+
+
+
+
 
 
 
