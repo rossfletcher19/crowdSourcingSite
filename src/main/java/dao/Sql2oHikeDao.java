@@ -22,17 +22,19 @@ public class Sql2oHikeDao implements HikeDao {
 
     @Override
     public void add(Hike hike) {
-        String sql = "INSERT INTO hike (nameOfHike, locationOfHike, notesOnHike, ratingHike) VALUES (:nameOfHike, :locationOfHike, :notesOnHike, :ratingHike)";
+        String sql = "INSERT INTO hike (nameOfHike, locationOfHike, notesOnHike, ratingHike, locationId) VALUES (:nameOfHike, :locationOfHike, :notesOnHike, :ratingHike, :locationId)";
         try (Connection con = sql2o.open()){
             int id = (int) con.createQuery(sql)
                     .addParameter("nameOfHike", hike.getNameOfHike())
                     .addParameter("locationOfHike", hike.getLocationOfHike())
                     .addParameter("notesOnHike", hike.getNotesOnHike())
                     .addParameter("ratingHike", hike.getRatingHike())
+                    .addParameter("locationId", hike.getLocationId())
                     .addColumnMapping("NAMEOFHIKE", "nameOfHike")
                     .addColumnMapping("LOCATIONOFHIKE", "locationOfHike")
                     .addColumnMapping("NOTESONHIKE", "notesOnHike")
                     .addColumnMapping("RATINGHIKE", "ratingHike")
+                    .addColumnMapping("LOCATIONID","locationId")
                     .executeUpdate()
                     .getKey();
             hike.setId(id);
@@ -60,7 +62,7 @@ public class Sql2oHikeDao implements HikeDao {
     }
 
     @Override
-    public void update(int id, String newNotesOnHike) {
+    public void update(int id, String newNotesOnHike, int locationId) {
         String sql = "UPDATE hike SET notesOnHike = :notesOnHike WHERE id=:id";
         try(Connection con = sql2o.open()){
             con.createQuery(sql)

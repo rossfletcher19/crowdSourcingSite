@@ -11,7 +11,7 @@ public class Hike {
     private int id;
     private int locationId;
 
-    public Hike(String nameOfHike, String locationOfHike, String notesOnHike, int ratingHike) {
+    public Hike(String nameOfHike, String locationOfHike, String notesOnHike, int ratingHike, int locationId) {
         this.nameOfHike = nameOfHike;
         this.locationOfHike = locationOfHike;
         this.notesOnHike = notesOnHike;

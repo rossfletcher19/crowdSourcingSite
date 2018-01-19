@@ -15,7 +15,7 @@ public interface HikeDao {
 
     Hike getById(int id);
 
-    void update(int id, String notesOnHike);
+    void update(int id, String notesOnHike, int locationId);
 
     void deleteById(int id);
 

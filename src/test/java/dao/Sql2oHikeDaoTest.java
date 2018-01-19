@@ -40,7 +40,7 @@ public class Sql2oHikeDaoTest {
     }
 
     public Hike setupNewHike() {
-        return new Hike("Trillium Lake Loop", "Mt. Hood", "Great View of Mt. Hood",1);
+        return new Hike("Trillium Lake Loop", "Mt. Hood", "Great View of Mt. Hood",1, 1);
     }
 
     @Test
@@ -77,10 +77,10 @@ public class Sql2oHikeDaoTest {
     @Test
     public void updateHikeContent() throws Exception {
         String initialNotes = "Great family spot";
-        Hike hike = new Hike("Haag Lake", "Forest Grove", initialNotes, 5);
+        Hike hike = new Hike("Haag Lake", "Forest Grove", initialNotes, 5,1);
         hikeDao.add(hike);
 
-        hikeDao.update(hike.getId(),"Great Family spot, Good Fishing");
+        hikeDao.update(hike.getId(),"Great Family spot, Good Fishing",1);
         Hike updatedHike = hikeDao.getById(hike.getId());
         assertNotEquals(initialNotes, updatedHike.getNotesOnHike());
     }
