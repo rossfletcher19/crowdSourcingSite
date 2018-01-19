@@ -93,5 +93,17 @@ public class Sql2oHikeDaoTest {
         assertEquals(0, hikeDao.getAll().size());
     }
 
+    @Test
+    public void clearAllClearsAllHikes() throws Exception {
+        Hike hike = setupNewHike();
+        Hike oterHike = setupNewHike();
+        hikeDao.add(hike);
+        hikeDao.add(oterHike);
+
+        int daoSize = hikeDao.getAll().size();
+        hikeDao.clearAllHikes();
+        assertTrue(daoSize > 0 && daoSize > hikeDao.getAll().size());
+    }
+
 
 }
