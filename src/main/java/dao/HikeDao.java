@@ -1,19 +1,19 @@
 package dao;
 
-import models.Hikes;
+import models.Hike;
 
 import java.util.List;
 
 /**
  * Created by Guest on 1/18/18.
  */
-public interface HikesDao {
+public interface HikeDao {
 
-    void add(Hikes hikes);
+    void add(Hike hike);
 
-//    List<Hikes> getAll();
+//    List<Hike> getAll();
 //
-//    Hikes getById(int id);
+//    Hike getById(int id);
 //
 //    void update(String nameOfHike, String locationOfHike, String notesOnHike, int ratingHike, int id, int locationId);
 //

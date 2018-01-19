@@ -1,6 +1,6 @@
 SET MODE PostgreSQL;
 
-CREATE TABLE IF NOT EXISTS hikes (
+CREATE TABLE IF NOT EXISTS hike (
   id int PRIMARY KEY auto_increment,
   hikeName VARCHAR,
   hikeLocation VARCHAR,
@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS hikes (
   locationId INT,
 );
 
-CREATE TABLE IF NOT EXISTS locations (
+CREATE TABLE IF NOT EXISTS location (
   id int PRIMARY KEY auto_increment,
   locationDistance INT,
   locationDifficulty INT,

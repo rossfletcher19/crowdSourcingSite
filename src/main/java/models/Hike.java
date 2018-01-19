@@ -3,7 +3,7 @@ package models;
 /**
  * Created by Guest on 1/18/18.
  */
-public class Hikes {
+public class Hike {
     private String nameOfHike;
     private String locationOfHike;
     private String notesOnHike;
@@ -12,7 +12,7 @@ public class Hikes {
     private int id;
     private int locationId;
 
-    public Hikes(String nameOfHike, String locationOfHike, String notesOnHike, int ratingHike, int locationId) {
+    public Hike(String nameOfHike, String locationOfHike, String notesOnHike, int ratingHike, int locationId) {
         this.nameOfHike = nameOfHike;
         this.locationOfHike = locationOfHike;
         this.notesOnHike = notesOnHike;
@@ -74,12 +74,12 @@ public class Hikes {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Hikes hikes = (Hikes) o;
+        Hike hike = (Hike) o;
 
-        if (ratingHike != hikes.ratingHike) return false;
-        if (completedHike != hikes.completedHike) return false;
-        if (!nameOfHike.equals(hikes.nameOfHike)) return false;
-        return locationOfHike.equals(hikes.locationOfHike);
+        if (ratingHike != hike.ratingHike) return false;
+        if (completedHike != hike.completedHike) return false;
+        if (!nameOfHike.equals(hike.nameOfHike)) return false;
+        return locationOfHike.equals(hike.locationOfHike);
     }
 
     @Override
