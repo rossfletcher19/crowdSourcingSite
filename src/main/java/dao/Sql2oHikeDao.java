@@ -59,4 +59,18 @@ public class Sql2oHikeDao implements HikeDao {
         }
     }
 
+    @Override  // "UPDATE shows SET summary = :summary, seasons = :seasons WHERE id = :id";
+    public void update(int id, String newNotesOnHike) {
+        String sql = "UPDATE hike SET notesOnHike = :notesOnHike WHERE id=:id";
+        try(Connection con = sql2o.open()){
+            con.createQuery(sql)
+                    .addParameter("notesOnHike", newNotesOnHike)
+                    .addParameter("id", id)
+                    .executeUpdate();
+        } catch (Sql2oException ex) {
+            System.out.println(ex);
+        }
+
+    }
+
 }
