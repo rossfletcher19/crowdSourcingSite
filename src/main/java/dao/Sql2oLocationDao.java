@@ -5,6 +5,8 @@ import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 import org.sql2o.Sql2oException;
 
+import java.util.List;
+
 /**
  * Created by Guest on 1/18/18.
  */
@@ -33,6 +35,14 @@ public class Sql2oLocationDao implements LocationDao {
             location.setId(id);
         } catch (Sql2oException ex) {
             System.out.println(ex);
+        }
+    }
+
+    @Override
+    public List<Location> getAll() {
+        try (Connection con = sql2o.open()) {
+            return con.createQuery("SELECT * FROM location")
+                    .executeAndFetch(Location.class);
         }
     }
 

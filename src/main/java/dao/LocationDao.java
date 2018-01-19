@@ -12,7 +12,7 @@ public interface LocationDao {
 
     void add (Location location);
 //
-//    List<Location> getAll();
+    List<Location> getAll();
 //    List<Hike> getAllHikesByLocation(int locationId);
 //
 //    Location findById(int id);

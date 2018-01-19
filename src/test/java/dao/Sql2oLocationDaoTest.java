@@ -8,6 +8,7 @@ import org.sql2o.Sql2o;
 
 import org.sql2o.Connection;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 /**
@@ -41,6 +42,15 @@ public class Sql2oLocationDaoTest {
         locationDao.add(location);
         assertNotEquals(originalLocationId, location.getId());
     }
+
+    @Test
+    public void addedLocationsCanBeReturnedByGetAll() throws Exception {
+        Location location = setupNewLocation();
+        locationDao.add(location);
+        assertEquals(1, locationDao.getAll().size());
+    }
+
+
 
     public Location setupNewLocation() {
         return new Location("Estacada", "Oregon", "United States", 0);
