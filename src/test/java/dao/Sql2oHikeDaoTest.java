@@ -9,6 +9,8 @@ import org.sql2o.Sql2o;
 import org.sql2o.Connection;
 
 
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
@@ -57,4 +59,20 @@ public class Sql2oHikeDaoTest {
         assertEquals(hike, foundHike);
 
     }
+
+    @Test
+    public void addedHikesAreReturnedWithGetAll() throws Exception {
+        Hike hike = setupNewHike();
+        Hike hike2 = setupNewHike();
+        hikeDao.add(hike);
+        hikeDao.add(hike2);
+        assertEquals(1, hikeDao.getAll().size());
+    }
+
+    @Test
+    public void noHikesReturnsEmptyList() throws Exception {
+        assertEquals(0, hikeDao.getAll().size());
+    }
+
+
 }

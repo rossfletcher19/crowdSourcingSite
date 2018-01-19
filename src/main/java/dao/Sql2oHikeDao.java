@@ -51,4 +51,12 @@ public class Sql2oHikeDao implements HikeDao {
         }
     }
 
+    @Override
+    public List<Hike> getAll() {
+        try(Connection con = sql2o.open()){
+            return con.createQuery("SELECT * FROM hike")
+                    .executeAndFetch(Hike.class);
+        }
+    }
+
 }

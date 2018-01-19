@@ -11,7 +11,7 @@ public interface HikeDao {
 
     void add(Hike hike);
 
-//    List<Hike> getAll();
+    List<Hike> getAll();
 
     Hike getById(int id);
 
