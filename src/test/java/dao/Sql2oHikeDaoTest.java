@@ -85,5 +85,13 @@ public class Sql2oHikeDaoTest {
         assertNotEquals(initialNotes, updatedHike.getNotesOnHike());
     }
 
+    @Test
+    public void deleteByIdDeletesCorrectHike() throws Exception {
+        Hike hike = setupNewHike();
+        hikeDao.add(hike);
+        hikeDao.deleteById(hike.getId());
+        assertEquals(0, hikeDao.getAll().size());
+    }
+
 
 }

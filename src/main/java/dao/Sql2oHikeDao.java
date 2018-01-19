@@ -59,7 +59,7 @@ public class Sql2oHikeDao implements HikeDao {
         }
     }
 
-    @Override  // "UPDATE shows SET summary = :summary, seasons = :seasons WHERE id = :id";
+    @Override
     public void update(int id, String newNotesOnHike) {
         String sql = "UPDATE hike SET notesOnHike = :notesOnHike WHERE id=:id";
         try(Connection con = sql2o.open()){
@@ -71,6 +71,29 @@ public class Sql2oHikeDao implements HikeDao {
             System.out.println(ex);
         }
 
+    }
+
+    @Override
+    public void deleteById(int id) {
+        String sql = "DELETE from hike WHERE id=:id";
+        try (Connection con = sql2o.open()) {
+            con.createQuery(sql)
+                    .addParameter("id", id)
+                    .executeUpdate();
+        } catch (Sql2oException ex){
+            System.out.println(ex);
+        }
+    }
+
+    @Override
+    public void clearAllHikes(){
+        String sql = "DELETE from hike";
+        try (Connection con = sql2o.open()) {
+            con.createQuery(sql)
+                    .executeUpdate();
+        } catch (Sql2oException ex) {
+            System.out.println(ex);
+        }
     }
 
 }
