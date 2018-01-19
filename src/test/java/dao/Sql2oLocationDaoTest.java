@@ -89,7 +89,14 @@ public class Sql2oLocationDaoTest {
         locationDao.update(location.getId(), "SW Portland", "Oregon", "USA");
         Location updatedLocation = locationDao.findById(location.getId());
         assertNotEquals(initialCityName, updatedLocation.getNameCity());
+    }
 
+    @Test
+    public void deleteByIdDeletesCorrectLocation() throws Exception {
+        Location location = setupNewLocation();
+        locationDao.add(location);
+        locationDao.deleteById(location.getId());
+        assertEquals(0, locationDao.getAll().size());
     }
 
 

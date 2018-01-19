@@ -20,7 +20,7 @@ public interface LocationDao {
 //
     void update(int id, String nameCity, String nameState, String nameCountry);
 //
-//    void deleteById(int id);
+    void deleteById(int id);
 //
 //    void clearAllLocations();
 
