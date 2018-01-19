@@ -12,7 +12,7 @@ public class Hike {
     private int id;
     private int locationId;
 
-    public Hike(String nameOfHike, String locationOfHike, String notesOnHike, int ratingHike, int locationId) {
+    public Hike(String nameOfHike, String locationOfHike, String notesOnHike, int ratingHike) {
         this.nameOfHike = nameOfHike;
         this.locationOfHike = locationOfHike;
         this.notesOnHike = notesOnHike;
@@ -41,6 +41,10 @@ public class Hike {
 
     public int getLocationId() {
         return locationId;
+    }
+
+    public int getId() {
+        return id;
     }
 
     // Setters

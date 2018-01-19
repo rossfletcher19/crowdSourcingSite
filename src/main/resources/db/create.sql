@@ -2,10 +2,10 @@ SET MODE PostgreSQL;
 
 CREATE TABLE IF NOT EXISTS hike (
   id int PRIMARY KEY auto_increment,
-  hikeName VARCHAR,
-  hikeLocation VARCHAR,
-  hikeNotes VARCHAR,
-  hikeRating INT,
+  nameOfHike VARCHAR,
+  locationOfHike VARCHAR,
+  notesOnHike VARCHAR,
+  ratingHike INT,
   hikeCompleted BOOLEAN,
   locationId INT,
 );

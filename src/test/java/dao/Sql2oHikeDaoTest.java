@@ -8,6 +8,8 @@ import org.sql2o.Sql2o;
 
 import org.sql2o.Connection;
 
+import static org.junit.Assert.assertNotEquals;
+
 /**
  * Created by Guest on 1/18/18.
  */
@@ -34,7 +36,9 @@ public class Sql2oHikeDaoTest {
 
     @Test
     public void addingHikeSetsId() throws Exception {
-        Hike hike = new Hike("Trillium Lake Loop", "Mt. Hood", "Great View of Mt. Hood", 5, 1);
-
+        Hike hike = new Hike("Trillium Lake Loop", "Mt. Hood", "Great View of Mt. Hood", 5);
+        int originalHikeId = hike.getId();
+        hikeDao.add(hike);
+        assertNotEquals(originalHikeId, hike.getId());
     }
 }
