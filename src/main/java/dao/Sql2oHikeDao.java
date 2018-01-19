@@ -25,16 +25,17 @@ public class Sql2oHikeDao implements HikeDao {
         String sql = "INSERT INTO hike (nameOfHike, locationOfHike, notesOnHike, ratingHike, locationId) VALUES (:nameOfHike, :locationOfHike, :notesOnHike, :ratingHike, :locationId)";
         try (Connection con = sql2o.open()){
             int id = (int) con.createQuery(sql)
-                    .addParameter("nameOfHike", hike.getNameOfHike())
-                    .addParameter("locationOfHike", hike.getLocationOfHike())
-                    .addParameter("notesOnHike", hike.getNotesOnHike())
-                    .addParameter("ratingHike", hike.getRatingHike())
-                    .addParameter("locationId", hike.getLocationId())
-                    .addColumnMapping("NAMEOFHIKE", "nameOfHike")
-                    .addColumnMapping("LOCATIONOFHIKE", "locationOfHike")
-                    .addColumnMapping("NOTESONHIKE", "notesOnHike")
-                    .addColumnMapping("RATINGHIKE", "ratingHike")
-                    .addColumnMapping("LOCATIONID","locationId")
+                    .bind(hike)
+//                    .addParameter("nameOfHike", hike.getNameOfHike())
+//                    .addParameter("locationOfHike", hike.getLocationOfHike())
+//                    .addParameter("notesOnHike", hike.getNotesOnHike())
+//                    .addParameter("ratingHike", hike.getRatingHike())
+//                    .addParameter("locationId", hike.getLocationId())
+//                    .addColumnMapping("NAMEOFHIKE", "nameOfHike")
+//                    .addColumnMapping("LOCATIONOFHIKE", "locationOfHike")
+//                    .addColumnMapping("NOTESONHIKE", "notesOnHike")
+//                    .addColumnMapping("RATINGHIKE", "ratingHike")
+//                    .addColumnMapping("LOCATIONID","locationId")
                     .executeUpdate()
                     .getKey();
             hike.setId(id);

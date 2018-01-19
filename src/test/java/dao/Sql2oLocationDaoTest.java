@@ -43,6 +43,6 @@ public class Sql2oLocationDaoTest {
     }
 
     public Location setupNewLocation() {
-        return new Location("Estacada", "Oregon", "United States", 1);
+        return new Location("Estacada", "Oregon", "United States", 0);
     }
 }
