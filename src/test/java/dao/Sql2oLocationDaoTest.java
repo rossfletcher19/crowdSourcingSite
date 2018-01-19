@@ -99,11 +99,16 @@ public class Sql2oLocationDaoTest {
         assertEquals(0, locationDao.getAll().size());
     }
 
-
-
-
-
-
+    @Test
+    public void clearAllLocationsClearsLocations() throws Exception {
+        Location location = setupNewLocation();
+        Location otherLocation = setupNewLocation();
+        locationDao.add(location);
+        locationDao.add(otherLocation);
+        int daoSize = locationDao.getAll().size();
+        locationDao.clearAllLocations();
+        assertTrue(daoSize > 0 && daoSize > locationDao.getAll().size());
+    }
 
 
     public Location setupNewLocation() {

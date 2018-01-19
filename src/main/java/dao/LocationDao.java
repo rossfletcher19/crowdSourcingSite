@@ -22,6 +22,6 @@ public interface LocationDao {
 //
     void deleteById(int id);
 //
-//    void clearAllLocations();
+    void clearAllLocations();
 
 }
