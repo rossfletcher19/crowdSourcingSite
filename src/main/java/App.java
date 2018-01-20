@@ -44,6 +44,24 @@ public class App {
             return new ModelAndView(model, "success2.hbs");
         }, new HandlebarsTemplateEngine());
 
+        //get: show an individual hike that is nested in a location
+        get("/hikes/:hike_id", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int idOfHikeToFind = Integer.parseInt(req.params("hike_id"));
+            Hike foundHike = hikeDao.getById(idOfHikeToFind);
+            model.put("task", foundHike);
+            return new ModelAndView(model, "Hike-detail.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        //get: show a form to update a hike
+        get("/hikes/update", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int idOfHikeToEdit = Integer.parseInt(req.params("hike_id"));
+            Hike editHike = hikeDao.getById(idOfHikeToEdit);
+            model.put("editHike", editHike);
+            return new ModelAndView(model, "hike-form.hbs");
+        }, new HandlebarsTemplateEngine());
+
 
 
 
