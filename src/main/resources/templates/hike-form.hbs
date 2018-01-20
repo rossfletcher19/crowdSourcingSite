@@ -1,0 +1,31 @@
+{{#partial "content"}}
+
+    {{#if editHike}}
+        <h1>Edit this Hike!</h1>
+        <form action="/hikes/{{editHike.id}}/update" method="post">
+            <label for="nameOfHike">Edit this task's name</label>
+            <input id="nameOfHike" name="nameOfHike" type="text" value="{{editHike.nameOfHike}}">
+
+    {{else}}
+            <h1>Add a new Hike!</h1>
+
+        <form action="/hikes/new" method="post">
+            <label for="nameOfHike">Hike Name: </label>
+            <input id="nameOfHike" name="nameOfHike" type="text"><br>
+
+            <label for="locationOfHike">Hike Location: </label>
+            <input id="locationOfHike" name="locationOfHike" type="text"><br>
+
+            <label for="notesOnHike">Hike Notes: </label>
+            <input id="notesOnHike" name="notesOnHike" type="text"><br>
+
+            <label for="ratingHike">Hike Rating 1-5 (5 is best): </label>
+            <input id="ratingHike" name="ratingHike" type="text"><br>
+
+
+    {{/if}}
+        <button type="submit" class="btn btn-default">Go!</button>
+    </form>
+{{/partial}}
+
+{{> layout.hbs}}
