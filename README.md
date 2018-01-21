@@ -6,7 +6,7 @@
 
 ## Narrative
 
-_We all have paths we take in life. Some more challenging then others. Some for leisure, some for need, and others out of circumstance, and it is our position in this life to overcome and conquer whatever path presents itself. Here I wish to account for the beauty you have witnessed with your own eyes and had cross your path, created by mother nature so naturally and unimpeded._
+_We all have paths we take in life. Some more challenging than others. Some for leisure, some for need, and others out of circumstance, and it is our position in this life to overcome and conquer whatever path presents itself. Here I wish to account for the beauty you have witnessed, with your own eyes and had cross your path, created by mother nature so naturally and unimpeded._
 
 ## Configuration and Prerequisites
 
