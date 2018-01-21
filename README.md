@@ -1,37 +1,46 @@
-# _{Application Name}_
+# _Hiking Log_
 
-#### _{Brief description of application}, {Date of current version}_
+#### _Beyond these words lie your instructions which will guide you narrowly on a path to application execution, if you so choose to follow. Add a Hike, Quest, or a distance of Mother Earth you have overcome or rose to the top of, in this life or another._ _Jan-2018_
 
-#### By _**{List of contributors}**_
+#### _**By Ross Fletcher**_
 
-## Description
+## Narrative
 
-_{This is a detailed description of your application. Its purpose and usage.  Give as much detail as needed to explain what the application does, and any other information you want users or other developers to have. }_
+_We all have paths we take in life. Some more challenging then others. Some for leisure, some for need, and others out of circumstance, and it is our position in this life to overcome and conquer whatever path presents itself. Here I wish to account for the beauty you have witnessed with your own eyes and had cross your path, created by mother nature so naturally and unimpeded._
 
-## Setup/Installation Requirements
+## Configuration and Prerequisites
 
-* _This is a great place_
-* _to list setup instructions_
-* _in a simple_
-* _easy-to-understand_
-* _format_
+_With the tools you have been given and accepted to master, use them precisely, and take the steps that proceed..._
 
-_{Leave nothing to chance! You want it to be easy for potential users, employers and collaborators to run your app. Do I need to run a server? How should I set up my databases? Is there other code this app depends on?}_
+
+* _Download or fork and clone from [Here](https://github.com/rossfletcher19/crowdSourcingSite)_
+* _Make sure you have Java installed and if not use [THIS SETUP MATERIAL](https://www.learnhowtoprogram.com/java/getting-started-with-java-39a9253a-41da-43f5-b50b-a922b3f613f5/installing-java-2990cd6c-3c11-4109-a6f9-2cd8f9579172) to install._
+* _Open project folder in an IDEA tool like [IntelliJ IDEA](https://www.jetbrains.com/idea/)_
+* _Contribute your ideas and knowledge in code to improve functionality and app stability._
 
 ## Known Bugs
 
-_{Are there issues that have not yet been resolved that you want to let users know you know?  Outline any issues that would impact use of your application.  Share any workarounds that are in place. }_
+_What is this bug you speak of? I see it as only a dare of which I can only accept and make as my own. Your input on any matter of this regard will be greatly appreciated and of the utmost importance._
 
 ## Support and contact details
 
-_{Let people know what to do if they run into any issues or have questions, ideas or concerns.  Encourage them to contact you or make a contribution to the code.}_
+_Contact can be made promptly through one of our now many means of communication. Please email @ rtbfletch at outlook._
 
 ## Technologies Used
 
-_{Tell me about the languages and tools you used to create this app. Assume that I know you probably used HTML and CSS. If you did something really cool using only HTML, point that out.}_
+Other than the mind...
+
+* _Java and Junit testing_
+* _IntelliJ_
+* _Handlebars templates and Spark Routes_
+* _Git and Github for version control_
 
 ### License
 
-*{Determine the license under which this application can be used.  See below for more details on licensing.}*
+Copyright (c) 2018 **_Ross Fletcher_**
 
-Copyright (c) 2016 **_{List of contributors or company name}_**
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
