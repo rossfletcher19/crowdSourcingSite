@@ -1,13 +1,15 @@
 {{#partial "content"}}
 
     <p>About The Hike:</p>
-    <p>{{nameOfHike}}</p>
+    <p>{{hike.nameOfHike}}</p>
     <h5>Located At:</h5>
-    <p>{{locationOfHike}}</p>
+    <p>{{hike.locationOfHike}}</p>
     <h5>Notes on this hike:</h5>
     <p>
-        {{notesOnHike}}
-
+        {{hike.notesOnHike}}
+    </p>
+    <br>
+    <p>
         <a href="/hikes/{{hike.id}}/update">Edit this Hike...</a><br>
         <a href="/hikes/{{id}}/delete">DELETE this hike. Better have a good reason! (no undo)</a>
     </p>

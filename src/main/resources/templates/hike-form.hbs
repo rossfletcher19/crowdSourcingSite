@@ -3,8 +3,8 @@
     {{#if editHike}}
         <h1>Edit this Hike!</h1>
         <form action="/hikes/{{editHike.id}}/update" method="post">
-            <label for="nameOfHike">Edit this task's name</label>
-            <input id="nameOfHike" name="nameOfHike" type="text" value="{{editHike.nameOfHike}}">
+            <label for="notesOnHike">Edit this hikes notes.</label>
+            <input id="notesOnHike" name="notesOnHike" type="text" value="{{editHike.notesOnHike}}">
 
     {{else}}
             <h1>Add a new Hike!</h1>

@@ -80,12 +80,12 @@ public class Sql2oLocationDaoTest {
     @Test
     public void updateChangesLocationContent() throws Exception {
         String initialCityName = "Portland";
-        Location location = new Location(initialCityName, "Oregon", "USA", 1);
+        Location location = new Location(initialCityName, 1);
         locationDao.add(location);
 
-        locationDao.update(location.getId(), "SW Portland", "Oregon", "USA");
+        locationDao.update(location.getId(), "SW Portland");
         Location updatedLocation = locationDao.findById(location.getId());
-        assertNotEquals(initialCityName, updatedLocation.getNameCity());
+        assertNotEquals(initialCityName, updatedLocation.getName());
     }
 
     @Test
@@ -109,6 +109,6 @@ public class Sql2oLocationDaoTest {
 
 
     public Location setupNewLocation() {
-        return new Location("Estacada", "Oregon", "United States", 0);
+        return new Location("Estacada", 0);
     }
 }

@@ -1,0 +1,26 @@
+{{#partial "content"}}
+
+    {{#if editLocation}}
+        <h1>Edit this location!</h1>
+        <form action="/locations/update" method="post">
+            <select name="editLocationId" id="editLocationId">
+                {{#each locations}}
+                    <option value="{{id}}">{{name}}</option>
+                {{/each}}
+            </select>
+            <label for="name">Edit this location's name</label>
+            <input id="newLocationName" name="newLocationName" type="text" placeholder="new location name">
+
+    {{else}}
+            <h1>Add a new Location!</h1>
+
+        <form action="/locations" method="post">
+            <label for="name">Location Name</label>
+            <input id="name" name="name" type="text">
+
+    {{/if}}
+        <button type="submit" class="btn btn-default">Go!</button>
+    </form>
+{{/partial}}
+
+{{> layout.hbs}}

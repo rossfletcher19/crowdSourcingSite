@@ -21,16 +21,12 @@ public class Sql2oLocationDao implements LocationDao {
 
     @Override
     public void add(Location location) {
-        String sql = "INSERT INTO location (nameCity, nameState, nameCountry) VALUES (:nameCity, :nameState, :nameCountry)";
+        String sql = "INSERT INTO location (name) VALUES (:name)";
         try (Connection con = sql2o.open()) {
             int id = (int) con.createQuery(sql)
                     .bind(location)
-//                    .addParameter("nameCity", location.getNameCity())
-//                    .addParameter("nameState", location.getNameState())
-//                    .addParameter("nameCountry", location.getNameCountry())
-//                    .addColumnMapping("NAMECITY", "nameCity")
-//                    .addColumnMapping("NAMESTATE", "nameState")
-//                    .addColumnMapping("NAMECOUNTRY", "nameCountry")
+//                    .addParameter("name", location.getName())
+//                    .addColumnMapping("NAME", "name")
                     .executeUpdate()
                     .getKey();
             location.setId(id);
@@ -67,13 +63,11 @@ public class Sql2oLocationDao implements LocationDao {
 
 
     @Override
-    public void update(int id, String newNameCity, String newNameState, String newNameCountry) {
-        String sql = "UPDATE location SET nameCity = :nameCity, nameState = :nameState, nameCountry = :nameCountry WHERE id=:id";
+    public void update(int id, String newName) {
+        String sql = "UPDATE location SET name = :name WHERE id=:id";
         try(Connection con = sql2o.open()){
             con.createQuery(sql)
-                    .addParameter("nameCity", newNameCity)
-                    .addParameter("nameState", newNameState)
-                    .addParameter("nameCountry", newNameCountry)
+                    .addParameter("name", newName)
                     .addParameter("id", id)
                     .executeUpdate();
         } catch (Sql2oException ex) {

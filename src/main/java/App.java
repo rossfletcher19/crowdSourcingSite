@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.Map;
 
 import dao.Sql2oHikeDao;
+import dao.Sql2oLocationDao;
 import models.Hike;
+import models.Location;
 import org.sql2o.Sql2o;
 import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
@@ -20,10 +22,37 @@ public class App {
         String connectionString = "jdbc:h2:~/hikingLog.db;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
         Sql2o sql2o = new Sql2o(connectionString, "", "");
         Sql2oHikeDao hikeDao = new Sql2oHikeDao(sql2o);
+        Sql2oLocationDao locationDao = new Sql2oLocationDao(sql2o);
 
-        // GET ROUTES
 
-        //get: show all tasks in all categories and show all categories
+        //get a specific location (and the hikes it contains)
+        //  /location/:location_id
+        get("/", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+
+            List<Location> allLocations = locationDao.getAll();
+            model.put("locations", allLocations);
+
+            List<Hike> hikes = hikeDao.getAll();
+            model.put("hikes", hikes);
+            return new ModelAndView(model, "index.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        // show new location form to create a new location
+        get("/locations/new", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+
+            List<Location> locations = locationDao.getAll();
+            model.put("locations", locations);
+
+            return new ModelAndView(model, "location-form.hbs");
+        }, new HandlebarsTemplateEngine());
+
+
+
+        // GET ROUTES for hikes
+
+        //get: show all hikes in all locations and show all locations
         get("/", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             List<Hike> hikes = hikeDao.getAll();
@@ -45,9 +74,9 @@ public class App {
         }, new HandlebarsTemplateEngine());
 
         //get: delete an individual hike
-        get("/hikes/:id/delete", (req, res) -> {
+        get("/hikes/:hike_id/delete", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            int idOfHikeToDelete = Integer.parseInt(req.params("id"));
+            int idOfHikeToDelete = Integer.parseInt(req.params("hike_id"));
             Hike deleteHike = hikeDao.getById(idOfHikeToDelete);
             hikeDao.deleteById(idOfHikeToDelete);
             return new ModelAndView(model, "success3.hbs");
@@ -59,21 +88,17 @@ public class App {
             int idOfHikeToFind = Integer.parseInt(req.params("hike_id"));
             Hike foundHike = hikeDao.getById(idOfHikeToFind);
             model.put("hike", foundHike);
-            return new ModelAndView(model, "Hike-detail.hbs");
+            return new ModelAndView(model, "hike-detail.hbs");
         }, new HandlebarsTemplateEngine());
 
         //get: show a form to update a hike
-        get("/hikes/update", (req, res) -> {
+        get("/hikes/:id/update", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            int idOfHikeToEdit = Integer.parseInt(req.params("hike_id"));
+            int idOfHikeToEdit = Integer.parseInt(req.params("id"));
             Hike editHike = hikeDao.getById(idOfHikeToEdit);
             model.put("editHike", editHike);
             return new ModelAndView(model, "hike-form.hbs");
         }, new HandlebarsTemplateEngine());
-
-
-
-
 
 
         // POST ROUTES
@@ -88,6 +113,16 @@ public class App {
             Hike newHike = new Hike(nameOfHike, locationOfHike, notesOnHike, ratingHike, 1);
             hikeDao.add(newHike);
             model.put("newHike", newHike);
+            return new ModelAndView(model, "success.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        //post: process a form to update a hike
+        post("/hikes/:id/update", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            String newNotes = req.queryParams("notesOnHike");
+            int idOfHikeToEdit = Integer.parseInt(req.queryParams("id"));
+            Hike editHike = hikeDao.getById(idOfHikeToEdit);
+            hikeDao.update(idOfHikeToEdit, newNotes, 1); //ignore the hardcoded categoryId for now.
             return new ModelAndView(model, "success.hbs");
         }, new HandlebarsTemplateEngine());
 

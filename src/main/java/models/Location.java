@@ -7,30 +7,18 @@ import javax.print.DocFlavor;
  */
 public class Location {
 
-    private String nameCity;
-    private String nameState;
-    private String nameCountry;
+    private String name;
     private int id;
 
-    public Location(String nameCity, String nameState, String nameCountry, int id) {
-        this.nameCity = nameCity;
-        this.nameState = nameState;
-        this.nameCountry = nameCountry;
+    public Location(String name, int id) {
+        this.name = name;
         this.id = id;
     }
 
 //    Getters
 
-    public String getNameCity() {
-        return nameCity;
-    }
-
-    public String getNameState() {
-        return nameState;
-    }
-
-    public String getNameCountry() {
-        return nameCountry;
+    public String getName() {
+        return name;
     }
 
     public int getId() {
@@ -40,16 +28,8 @@ public class Location {
 
 //  Setters
 
-    public void setNameCity(String nameCity) {
-        this.nameCity = nameCity;
-    }
-
-    public void setNameState(String nameState) {
-        this.nameState = nameState;
-    }
-
-    public void setNameCountry(String nameCountry) {
-        this.nameCountry = nameCountry;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setId(int id) {
@@ -64,16 +44,12 @@ public class Location {
         Location location = (Location) o;
 
         if (id != location.id) return false;
-        if (nameCity != null ? !nameCity.equals(location.nameCity) : location.nameCity != null) return false;
-        if (nameState != null ? !nameState.equals(location.nameState) : location.nameState != null) return false;
-        return nameCountry != null ? nameCountry.equals(location.nameCountry) : location.nameCountry == null;
+        return name.equals(location.name);
     }
 
     @Override
     public int hashCode() {
-        int result = nameCity != null ? nameCity.hashCode() : 0;
-        result = 31 * result + (nameState != null ? nameState.hashCode() : 0);
-        result = 31 * result + (nameCountry != null ? nameCountry.hashCode() : 0);
+        int result = name.hashCode();
         result = 31 * result + id;
         return result;
     }
