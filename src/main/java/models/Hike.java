@@ -79,9 +79,10 @@ public class Hike {
 
         Hike hike = (Hike) o;
 
+        if (ratingHike != hike.ratingHike) return false;
         if (id != hike.id) return false;
         if (locationId != hike.locationId) return false;
-        if (nameOfHike != null ? !nameOfHike.equals(hike.nameOfHike) : hike.nameOfHike != null) return false;
+        if (!nameOfHike.equals(hike.nameOfHike)) return false;
         if (locationOfHike != null ? !locationOfHike.equals(hike.locationOfHike) : hike.locationOfHike != null)
             return false;
         return notesOnHike != null ? notesOnHike.equals(hike.notesOnHike) : hike.notesOnHike == null;
@@ -89,9 +90,10 @@ public class Hike {
 
     @Override
     public int hashCode() {
-        int result = nameOfHike != null ? nameOfHike.hashCode() : 0;
+        int result = nameOfHike.hashCode();
         result = 31 * result + (locationOfHike != null ? locationOfHike.hashCode() : 0);
         result = 31 * result + (notesOnHike != null ? notesOnHike.hashCode() : 0);
+        result = 31 * result + ratingHike;
         result = 31 * result + id;
         result = 31 * result + locationId;
         return result;

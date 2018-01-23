@@ -17,7 +17,7 @@ public class App {
 
     public static void main(String[] args) {
         staticFileLocation("/public");
-        String connectionString = "jdbc:h2:~/todolist.db;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
+        String connectionString = "jdbc:h2:~/hikingLog.db;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
         Sql2o sql2o = new Sql2o(connectionString, "", "");
         Sql2oHikeDao hikeDao = new Sql2oHikeDao(sql2o);
 
@@ -44,12 +44,21 @@ public class App {
             return new ModelAndView(model, "success2.hbs");
         }, new HandlebarsTemplateEngine());
 
+        //get: delete an individual hike
+        get("/hikes/:id/delete", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int idOfHikeToDelete = Integer.parseInt(req.params("id"));
+            Hike deleteHike = hikeDao.getById(idOfHikeToDelete);
+            hikeDao.deleteById(idOfHikeToDelete);
+            return new ModelAndView(model, "success3.hbs");
+        }, new HandlebarsTemplateEngine());
+
         //get: show an individual hike that is nested in a location
         get("/hikes/:hike_id", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             int idOfHikeToFind = Integer.parseInt(req.params("hike_id"));
             Hike foundHike = hikeDao.getById(idOfHikeToFind);
-            model.put("task", foundHike);
+            model.put("hike", foundHike);
             return new ModelAndView(model, "Hike-detail.hbs");
         }, new HandlebarsTemplateEngine());
 
@@ -76,9 +85,9 @@ public class App {
             String locationOfHike = request.queryParams("locationOfHike");
             String notesOnHike = request.queryParams("notesOnHike");
             int ratingHike = Integer.parseInt(request.queryParams("ratingHike"));
-            Hike newHike = new Hike(nameOfHike, locationOfHike, notesOnHike, ratingHike, 1); //ignore the hardcoded categoryId
+            Hike newHike = new Hike(nameOfHike, locationOfHike, notesOnHike, ratingHike, 1);
             hikeDao.add(newHike);
-            model.put("hike", newHike);
+            model.put("newHike", newHike);
             return new ModelAndView(model, "success.hbs");
         }, new HandlebarsTemplateEngine());
 

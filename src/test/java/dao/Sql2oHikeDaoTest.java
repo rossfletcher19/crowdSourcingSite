@@ -27,9 +27,7 @@ public class Sql2oHikeDaoTest {
     public void setUp() throws Exception {
         String connectionString = "jdbc:h2:mem:testing;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
         Sql2o sql2o = new Sql2o(connectionString, "", "");
-        hikeDao = new Sql2oHikeDao(sql2o); //ignore me for now
-
-        //keep connection open through entire test so it does not get erased.
+        hikeDao = new Sql2oHikeDao(sql2o);
         conn = sql2o.open();
 
     }
@@ -103,6 +101,14 @@ public class Sql2oHikeDaoTest {
         int daoSize = hikeDao.getAll().size();
         hikeDao.clearAllHikes();
         assertTrue(daoSize > 0 && daoSize > hikeDao.getAll().size());
+    }
+
+    @Test
+    public void locationIdIsReturnedCorrectly() throws Exception {
+        Hike hike = setupNewHike();
+        int originalLocationId = hike.getLocationId();
+        hikeDao.add(hike);
+        assertEquals(originalLocationId, hikeDao.getById(hike.getId()).getLocationId());
     }
 
 

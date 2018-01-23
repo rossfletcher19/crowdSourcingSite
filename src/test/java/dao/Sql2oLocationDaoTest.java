@@ -11,9 +11,6 @@ import org.sql2o.Connection;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by Guest on 1/18/18.
- */
 public class Sql2oLocationDaoTest {
 
     private Sql2oLocationDao locationDao;
