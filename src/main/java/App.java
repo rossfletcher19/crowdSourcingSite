@@ -154,7 +154,7 @@ public class App {
         post("/hikes/:id/update", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             String newNotes = req.queryParams("notesOnHike");
-            int idOfHikeToEdit = Integer.parseInt(req.queryParams("id"));
+            int idOfHikeToEdit = Integer.parseInt(req.params("id"));
             Hike editHike = hikeDao.getById(idOfHikeToEdit);
             hikeDao.update(idOfHikeToEdit, newNotes, 1); //ignore the hardcoded categoryId for now.
             return new ModelAndView(model, "success.hbs");
