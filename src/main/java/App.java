@@ -24,10 +24,8 @@ public class App {
         Sql2oHikeDao hikeDao = new Sql2oHikeDao(sql2o);
         Sql2oLocationDao locationDao = new Sql2oLocationDao(sql2o);
 
-        // Get Routes for location
-        // OK
 
-        //get: show all tasks in all categories and show all categories ck
+        //get: show all hikes in all locations ck
         get("/", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
 
@@ -39,70 +37,14 @@ public class App {
             return new ModelAndView(model, "index.hbs");
         }, new HandlebarsTemplateEngine());
 
-        // show new location form to create a new location OK
-        get("/locations/new", (request, response) -> {
-            Map<String, Object> model = new HashMap<>();
-
-            List<Location> locations = locationDao.getAll();
-            model.put("locations", locations);
-
-            return new ModelAndView(model, "location-form.hbs");
-        }, new HandlebarsTemplateEngine());
-
-
-        //get: show a form to update a location ck
-        get("/locations/update", (req, res) -> {
-            Map<String, Object> model = new HashMap<>();
-
-            model.put("editLocation", true);
-
-            List<Location> allLocations = locationDao.getAll();
-            model.put("allLocations", allLocations);
-
-            return new ModelAndView(model, "location-form.hbs");
-        }, new HandlebarsTemplateEngine());
-
-        // Delete all locations and hikes
-        get("/locations/delete", (req, res) -> {
+        //get: delete all hikes ck
+        get("/hikes/delete", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             hikeDao.clearAllHikes();
-            locationDao.clearAllLocations();
-
-            List<Location> allLocations = locationDao.getAll();
-            model.put("locations", allLocations);
-
-            return new ModelAndView(model, "success5.hbs");
-        }, new HandlebarsTemplateEngine());
-
-        // Post Routes for location
-       //post: process a form to add a location ck
-        post("/locations", (req, res) -> { //new
-            Map<String, Object> model = new HashMap<>();
-            String name = req.queryParams("name");
-            Location newLocation = new Location(name);
-            locationDao.add(newLocation);
-
-            List<Location> locations = locationDao.getAll(); //refresh list of links for navbar.
-            model.put("locations", locations);
-
-            return new ModelAndView(model, "success4.hbs");
-        }, new HandlebarsTemplateEngine());
-
-        //post: process a form to update a location and hikes it contains
-        post("/locations/update", (req, res) -> {
-            Map<String, Object> model = new HashMap<>();
-            int idOfLocationToEdit = Integer.parseInt(req.queryParams("editLocationId"));
-            String newName = req.queryParams("newLocationName");
-            locationDao.update(locationDao.findById(idOfLocationToEdit).getId(), newName);
-
-            List<Location> locations = locationDao.getAll(); //refresh list of links for navbar.
-            model.put("locations", locations);
-
-            return new ModelAndView(model, "success.hbs");
+            return new ModelAndView(model, "success2.hbs");
         }, new HandlebarsTemplateEngine());
 
 
-        // GET ROUTES for hikes
         //get: show new hike form ck
         get("/hikes/new", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
@@ -112,31 +54,6 @@ public class App {
 
             return new ModelAndView(model, "hike-form.hbs");
         }, new HandlebarsTemplateEngine());
-
-        //get: delete all hikes ck
-        get("/hikes/delete", (req, res) -> {
-            Map<String, Object> model = new HashMap<>();
-            hikeDao.clearAllHikes();
-            return new ModelAndView(model, "success2.hbs");
-        }, new HandlebarsTemplateEngine());
-
-
-     //get: show a form to update a hike within a location ck
-        get("/hikes/update", (request, response) -> {
-            Map<String, Object> model = new HashMap<>();
-
-            List<Location> allLocations = locationDao.getAll();
-            model.put("locations", allLocations);
-
-            List<Hike> allHikes = hikeDao.getAll();
-            model.put("hikes", allHikes);
-
-            model.put("editHike", true);
-            return new ModelAndView(model, "hike-form.hbs");
-        }, new HandlebarsTemplateEngine());
-
-
-       // POST ROUTES
 
         //post: process new hike form ck
         post("/hikes/new", (request, response) -> {
@@ -156,6 +73,26 @@ public class App {
             return new ModelAndView(model, "success.hbs");
         }, new HandlebarsTemplateEngine());
 
+
+     //get: show a form to update a hike within a location OK
+        get("/hikes/update", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+
+            List<Location> allLocations = locationDao.getAll();
+            model.put("locations", allLocations);
+
+            List<Hike> allHikes = hikeDao.getAll();
+            model.put("hikes", allHikes);
+
+            model.put("editHike", true);
+            return new ModelAndView(model, "hike-form.hbs");
+        }, new HandlebarsTemplateEngine());
+
+
+       // POST ROUTES
+
+
+
         //post: process a form to update a hike ck
         post("/hikes/update", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
@@ -173,12 +110,64 @@ public class App {
 
 
 
+        // Post Routes for location
+
+        // show new location form to create a new location OK
+        get("/locations/new", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+
+            List<Location> locations = locationDao.getAll();
+            model.put("locations", locations);
+
+            return new ModelAndView(model, "location-form.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        //post: process a form to add a location ck
+        post("/locations", (req, res) -> { //new
+            Map<String, Object> model = new HashMap<>();
+            String name = req.queryParams("name");
+            Location newLocation = new Location(name);
+            locationDao.add(newLocation);
+
+            List<Location> allLocations = locationDao.getAll(); //refresh list of links for navbar.
+            model.put("locations", allLocations);
+
+            return new ModelAndView(model, "success4.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        //get: show a form to update a location ck
+        get("/locations/update", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+
+            model.put("editLocation", true);
+
+            List<Location> allLocations = locationDao.getAll();
+            model.put("locations", allLocations);
+
+            return new ModelAndView(model, "location-form.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        //post: process a form to update a location and hikes it contains
+        post("/locations/update", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+
+            List<Location> allLocations = locationDao.getAll();
+            model.put("locations", allLocations);
+            String newName = request.queryParams("newLocationName");
+            int idOfLocationToEdit = Integer.parseInt(request.queryParams("editLocationId"));
+            Location editLocName = locationDao.findById(idOfLocationToEdit);
+            locationDao.update(locationDao.findById(idOfLocationToEdit).getId(), newName);
+
+            return new ModelAndView(model, "success4.hbs");
+        }, new HandlebarsTemplateEngine());
+
+
         // Dynamic Routes
 
         //get a specific location (and the hikes it contains) OK
-        get("/locations/:id", (req, res) -> {
+        get("/locations/:Id", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            int idOfLocationToFind = Integer.parseInt(req.params("id"));
+            int idOfLocationToFind = Integer.parseInt(req.params("Id"));
 
             List<Location> locations = locationDao.getAll();
             model.put("locations", locations);
@@ -192,7 +181,6 @@ public class App {
         }, new HandlebarsTemplateEngine());
 
         //get: show an individual hike that is nested in a location ck
-        // "/locations/{{locationid}}/hikes/{{id}}"
         get("/locations/:location_id/hikes/:hike_id", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
 
@@ -206,12 +194,24 @@ public class App {
         }, new HandlebarsTemplateEngine());
 
         //get: delete an individual hike ck
-        get("/locations/:id/hikes/:id/delete", (req, res) -> {
+        get("/locations/:location_id/hikes/:hike_id/delete", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            int idOfHikeToDelete = Integer.parseInt(req.params("id"));
+            int idOfHikeToDelete = Integer.parseInt(req.params("hike_id"));
             Hike deleteHike = hikeDao.getById(idOfHikeToDelete);
             hikeDao.deleteById(idOfHikeToDelete);
             return new ModelAndView(model, "success3.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        // Delete all locations and hikes
+        get("/locations/delete", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            hikeDao.clearAllHikes();
+            locationDao.clearAllLocations();
+
+            List<Location> allLocations = locationDao.getAll();
+            model.put("locations", allLocations);
+
+            return new ModelAndView(model, "success5.hbs");
         }, new HandlebarsTemplateEngine());
 
     }

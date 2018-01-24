@@ -1,15 +1,15 @@
 {{#partial "content"}}
 
     {{#if editLocation}}
-        <h1>Edit this location!</h1>
+        <h1>Select the location you'd like to edit..</h1>
         <form action="/locations/update" method="post">
             <select name="editLocationId" id="editLocationId">
                 {{#each locations}}
                     <option value="{{id}}">{{name}}</option>
                 {{/each}}
             </select>
-            <label for="name">Edit this location's name</label>
-            <input id="newName" name="newName" type="text" placeholder="new location name">
+            <label for="newLocationName">Edit this location's name here:</label>
+            <input id="newLocationName" name="newLocationName" type="text" placeholder="new location name">
 
     {{else}}
             <h1>Add a new Location!</h1>

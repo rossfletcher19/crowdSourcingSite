@@ -20,7 +20,7 @@ _With the tools you have been given and accepted to master, use them precisely, 
 
 ## Known Bugs
 
-_What is this bug you speak of? I see it as only a dare of which I can only accept and make as my own. Your input on any matter of this regard will be greatly appreciated and of the utmost importance._
+* _From the Edit this Location page you can not see other locations in the drop down_
 
 ## Support and contact details
 
