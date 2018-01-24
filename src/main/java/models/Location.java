@@ -10,9 +10,8 @@ public class Location {
     private String name;
     private int id;
 
-    public Location(String name, int id) {
+    public Location(String name) {
         this.name = name;
-        this.id = id;
     }
 
 //    Getters

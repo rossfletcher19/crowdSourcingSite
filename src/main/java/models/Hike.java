@@ -5,15 +5,13 @@ package models;
  */
 public class Hike {
     private String nameOfHike;
-    private String locationOfHike;
     private String notesOnHike;
     private int ratingHike;
     private int id;
     private int locationId;
 
-    public Hike(String nameOfHike, String locationOfHike, String notesOnHike, int ratingHike, int locationId) {
+    public Hike(String nameOfHike, String notesOnHike, int ratingHike, int locationId) {
         this.nameOfHike = nameOfHike;
-        this.locationOfHike = locationOfHike;
         this.notesOnHike = notesOnHike;
         this.ratingHike = ratingHike;
         this.locationId = locationId;
@@ -23,10 +21,6 @@ public class Hike {
 
     public String getNameOfHike() {
         return nameOfHike;
-    }
-
-    public String getLocationOfHike() {
-        return locationOfHike;
     }
 
     public String getNotesOnHike() {
@@ -50,10 +44,6 @@ public class Hike {
 
     public void setNameOfHike(String nameOfHike) {
         this.nameOfHike = nameOfHike;
-    }
-
-    public void setLocationOfHike(String locationOfHike) {
-        this.locationOfHike = locationOfHike;
     }
 
     public void setNotesOnHike(String notesOnHike) {
@@ -83,15 +73,12 @@ public class Hike {
         if (id != hike.id) return false;
         if (locationId != hike.locationId) return false;
         if (!nameOfHike.equals(hike.nameOfHike)) return false;
-        if (locationOfHike != null ? !locationOfHike.equals(hike.locationOfHike) : hike.locationOfHike != null)
-            return false;
         return notesOnHike != null ? notesOnHike.equals(hike.notesOnHike) : hike.notesOnHike == null;
     }
 
     @Override
     public int hashCode() {
         int result = nameOfHike.hashCode();
-        result = 31 * result + (locationOfHike != null ? locationOfHike.hashCode() : 0);
         result = 31 * result + (notesOnHike != null ? notesOnHike.hashCode() : 0);
         result = 31 * result + ratingHike;
         result = 31 * result + id;

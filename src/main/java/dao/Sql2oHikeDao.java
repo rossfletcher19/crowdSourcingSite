@@ -22,17 +22,15 @@ public class Sql2oHikeDao implements HikeDao {
 
     @Override
     public void add(Hike hike) {
-        String sql = "INSERT INTO hike (nameOfHike, locationOfHike, notesOnHike, ratingHike, locationId) VALUES (:nameOfHike, :locationOfHike, :notesOnHike, :ratingHike, :locationId)";
+        String sql = "INSERT INTO hike (nameOfHike, notesOnHike, ratingHike, locationId) VALUES (:nameOfHike, :notesOnHike, :ratingHike, :locationId)";
         try (Connection con = sql2o.open()){
             int id = (int) con.createQuery(sql)
 //                    .bind(hike)
                     .addParameter("nameOfHike", hike.getNameOfHike())
-                    .addParameter("locationOfHike", hike.getLocationOfHike())
                     .addParameter("notesOnHike", hike.getNotesOnHike())
                     .addParameter("ratingHike", hike.getRatingHike())
                     .addParameter("locationId", hike.getLocationId())
                     .addColumnMapping("NAMEOFHIKE", "nameOfHike")
-                    .addColumnMapping("LOCATIONOFHIKE", "locationOfHike")
                     .addColumnMapping("NOTESONHIKE", "notesOnHike")
                     .addColumnMapping("RATINGHIKE", "ratingHike")
                     .addColumnMapping("LOCATIONID","locationId")

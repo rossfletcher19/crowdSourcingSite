@@ -65,9 +65,9 @@ public class Sql2oLocationDaoTest {
         Location location = setupNewLocation();
         locationDao.add(location);
         int locationId = location.getId();
-        Hike newHike = new Hike("Opal Creek", "LyonsOR", "Beautiful Blue Pools", 5, locationId);
-        Hike otherHike = new Hike("Mt. Hood Hike", "Government Camp", "Great forest hike", 5, locationId);
-        Hike thirdHike = new Hike("Silver Falls", "SublimityOR", "Beautiful Water Falls", 5, locationId);
+        Hike newHike = new Hike("Opal Creek", "Beautiful Blue Pools", 5, locationId);
+        Hike otherHike = new Hike("Mt. Hood Hike", "Great forest hike", 5, locationId);
+        Hike thirdHike = new Hike("Silver Falls", "Beautiful Water Falls", 5, locationId);
         hikeDao.add(newHike);
         hikeDao.add(otherHike);
 
