@@ -3,14 +3,15 @@
     {{#if editHike}}
         <form action="/hikes/update" method="post">
         <h1>Edit this Hike!</h1>
-        <select id="hikeToEditId" name="hikeToEditId">
+            <p>Current notes on hike:</p>
+        <select id="idOfHikeToEdit" name="idOfHikeToEdit">
             {{#each hikes}}
                 <option value="{{id}}">{{notesOnHike}}</option>
             {{/each}}
         </select>
         <br>
             <label for="notesOnHike">Edit this hikes notes:</label>
-            <input id="notesOnHike" name="notesOnHike" type="text" placeholder="{{notesOnHike}}">
+            <input id="notesOnHike" name="notesOnHike" type="text" placeholder="Enter new notes">
             <br>
             <label for="locationId">Update this hikes location:</label>
             <select id="locationId" name="locationId">

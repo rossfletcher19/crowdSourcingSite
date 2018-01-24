@@ -67,23 +67,20 @@ public class App {
         }, new HandlebarsTemplateEngine());
 //
 //
-//        //get: show a form to update a location
-//        get("/locations/update", (req, res) -> {
-//            Map<String, Object> model = new HashMap<>();
-//
-//            model.put("editLocation", true);
-//
-//            List<Location> allLocations = locationDao.getAll();
-//            model.put("locations", allLocations);
-//
-//            return new ModelAndView(model, "location-form.hbs");
-//        }, new HandlebarsTemplateEngine());
-//
-//
-//
-//        // Post Routes for location
-//
-//        //post: process a form to add a location ck
+//        //get: show a form to update a location ck
+        get("/locations/update", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+
+            model.put("editLocation", true);
+
+            List<Location> allLocations = locationDao.getAll();
+            model.put("locations", allLocations);
+
+            return new ModelAndView(model, "location-form.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        // Post Routes for location
+       //post: process a form to add a location ck
         post("/locations", (request, response) -> { //new
             Map<String, Object> model = new HashMap<>();
             String name = request.queryParams("name");
@@ -95,19 +92,19 @@ public class App {
 
             return new ModelAndView(model, "success4.hbs");
         }, new HandlebarsTemplateEngine());
-//
-//        //post: process a form to update a location and hikes it contains
-//        post("/locations/update", (req, res) -> {
-//            Map<String, Object> model = new HashMap<>();
-//            int idOfLocationToEdit = Integer.parseInt(req.queryParams("editLocationId"));
-//            String newName = req.queryParams("newLocationName");
-//            locationDao.update(locationDao.findById(idOfLocationToEdit).getId(), newName);
-//
-//            List<Location> categories = locationDao.getAll(); //refresh list of links for navbar.
-//            model.put("categories", categories);
-//
-//            return new ModelAndView(model, "success.hbs");
-//        }, new HandlebarsTemplateEngine());
+
+        //post: process a form to update a location and hikes it contains
+        post("/locations/update", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int idOfLocationToEdit = Integer.parseInt(req.queryParams("editLocationId"));
+            String newName = req.queryParams("newLocationName");
+            locationDao.update(locationDao.findById(idOfLocationToEdit).getId(), newName);
+
+            List<Location> locations = locationDao.getAll(); //refresh list of links for navbar.
+            model.put("locations", locations);
+
+            return new ModelAndView(model, "success.hbs");
+        }, new HandlebarsTemplateEngine());
 
 
         // GET ROUTES for hikes
@@ -153,20 +150,20 @@ public class App {
             return new ModelAndView(model, "hike-detail.hbs");
         }, new HandlebarsTemplateEngine());
 //
-//        //get: show a form to update a hike ck
-        get("/hikes/update", (req, res) -> {
+//        //get: show a form to update a hike within a location ck
+        get("/hikes/update", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
 
             List<Location> allLocations = locationDao.getAll();
             model.put("locations", allLocations);
 //
-//            List<Hike> allHikes = hikeDao.getAll();
-//            model.put("hikes", allHikes);
+            List<Hike> allHikes = hikeDao.getAll();
+            model.put("hikes", allHikes);
 
-            int idOfTaskToEdit = Integer.parseInt(req.params("id"));
-            Hike editHike = hikeDao.getById(idOfTaskToEdit);
+//            int idOfTaskToEdit = Integer.parseInt(request.queryParams("id"));
+//            Hike editHike = hikeDao.getById(idOfTaskToEdit);
 
-            model.put("editHike", editHike);
+            model.put("editHike", true);
             return new ModelAndView(model, "hike-form.hbs");
         }, new HandlebarsTemplateEngine());
 //
@@ -192,15 +189,15 @@ public class App {
         }, new HandlebarsTemplateEngine());
 //
 //        //post: process a form to update a hike ck
-        post("/hikes/:id/update", (req, res) -> {
+        post("/hikes/update", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
 
             List<Location> allLocations = locationDao.getAll();
             model.put("locations", allLocations);
 
-            String newNotes = req.queryParams("notesOnHike");
-            int newLocationId = Integer.parseInt(req.queryParams("locationId"));
-            int idOfHikeToEdit = Integer.parseInt(req.queryParams("idOfHikeToEdit"));
+            String newNotes = request.queryParams("notesOnHike");
+            int newLocationId = Integer.parseInt(request.queryParams("locationId"));
+            int idOfHikeToEdit = Integer.parseInt(request.queryParams("idOfHikeToEdit"));
             Hike editHike = hikeDao.getById(idOfHikeToEdit);
             hikeDao.update(idOfHikeToEdit, newNotes, newLocationId); //ignore the hardcoded categoryId for now.
             return new ModelAndView(model, "success.hbs");
