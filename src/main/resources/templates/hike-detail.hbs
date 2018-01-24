@@ -3,7 +3,7 @@
     <p>About The Hike:</p>
     <p>{{hike.nameOfHike}}</p>
     <h5>Located At:</h5>
-    <p>{{hike.locationOfHike}}</p>
+    <p>{{location.name}}</p>
     <h5>Notes on this hike:</h5>
     <p>
         {{hike.notesOnHike}}
@@ -11,7 +11,7 @@
     <br>
     <p>
         <a href="/hikes/{{hike.id}}/update">Edit this Hike...</a><br>
-        <a href="/hikes/{{id}}/delete">DELETE this hike. Better have a good reason! (no undo)</a>
+        <a href="/locations/{{hike.locationId}}/hikes/{{hike.id}}/delete">DELETE this hike (no undo)</a>
     </p>
 
 {{/partial}}

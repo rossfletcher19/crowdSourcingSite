@@ -24,9 +24,8 @@ public class App {
         Sql2oHikeDao hikeDao = new Sql2oHikeDao(sql2o);
         Sql2oLocationDao locationDao = new Sql2oLocationDao(sql2o);
 
+        // Get Routes for location
 
-        //get a specific location (and the hikes it contains)
-        //  /location/:location_id
         get("/", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
 
@@ -48,6 +47,40 @@ public class App {
             return new ModelAndView(model, "location-form.hbs");
         }, new HandlebarsTemplateEngine());
 
+
+        //get a specific location (and the hikes it contains)
+        get("/locations/:id", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            int idOfLocationToFind = Integer.parseInt(request.params("id"));
+
+            List<Location> locations = locationDao.getAll();
+            model.put("locations", locations);
+
+            Location foundLocation = locationDao.findById(idOfLocationToFind);
+            model.put("category", foundLocation);
+            List<Hike> allHikesByCategory = locationDao.getAllHikesByLocation(idOfLocationToFind);
+            model.put("hikes", allHikesByCategory);
+
+            return new ModelAndView(model, "location-detail.hbs");
+        }, new HandlebarsTemplateEngine());
+
+
+
+
+
+        // Post Routes for location
+
+        post("/locations", (request, response) -> { //new
+            Map<String, Object> model = new HashMap<>();
+            String name = request.queryParams("name");
+            Location newLocation = new Location(name, 1);
+            locationDao.add(newLocation);
+
+            List<Location> locations = locationDao.getAll(); //refresh list of links for navbar.
+            model.put("locations", locations);
+
+            return new ModelAndView(model, "success.hbs");
+        }, new HandlebarsTemplateEngine());
 
 
         // GET ROUTES for hikes
@@ -74,18 +107,19 @@ public class App {
         }, new HandlebarsTemplateEngine());
 
         //get: delete an individual hike
-        get("/hikes/:hike_id/delete", (req, res) -> {
+        get("/locations/:id/hikes/:id/delete", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            int idOfHikeToDelete = Integer.parseInt(req.params("hike_id"));
+            int idOfHikeToDelete = Integer.parseInt(req.params("id"));
             Hike deleteHike = hikeDao.getById(idOfHikeToDelete);
             hikeDao.deleteById(idOfHikeToDelete);
             return new ModelAndView(model, "success3.hbs");
         }, new HandlebarsTemplateEngine());
 
         //get: show an individual hike that is nested in a location
-        get("/hikes/:hike_id", (req, res) -> {
+        // "/locations/{{locationid}}/hikes/{{id}}"
+        get("/locations/:id/hikes/:id", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            int idOfHikeToFind = Integer.parseInt(req.params("hike_id"));
+            int idOfHikeToFind = Integer.parseInt(req.params("id"));
             Hike foundHike = hikeDao.getById(idOfHikeToFind);
             model.put("hike", foundHike);
             return new ModelAndView(model, "hike-detail.hbs");

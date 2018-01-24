@@ -1,0 +1,25 @@
+{{#partial "content"}}
+    <p>Here are all the hikes listed in this location:{{location.name}} </p>
+
+    <ul>
+        {{#each hikes}}
+            <li>
+                <h5>Hike Name:</h5>
+                <p>{{nameOfHike}}</p>
+                <h5>Here are some notes about the hike:</h5>
+                <p> {{notesOnHike}}</p>
+                <h5>Hike Rating Avg:</h5>
+                    {{ratingHike}}
+                <br>
+                <a href="/hikes/update">Edit this hike!</a><br>
+                <a href="/hikes/delete">DELETE this hike (no undo)</a>
+                </p>
+            </li>
+        {{/each}}
+    </ul>
+    <a href="/locations/update">Edit this location</a><br>
+    <a href="/locations/delete">DELETE this location (no undo)</a>
+
+{{/partial}}
+
+{{> layout.hbs}}
