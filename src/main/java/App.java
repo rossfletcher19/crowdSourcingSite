@@ -49,9 +49,9 @@ public class App {
 
 
         //get a specific location (and the hikes it contains)
-        get("/locations/:id", (request, response) -> {
+        get("/locations/:id", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            int idOfLocationToFind = Integer.parseInt(request.params("id"));
+            int idOfLocationToFind = Integer.parseInt(req.params("id"));
 
             List<Location> locations = locationDao.getAll();
             model.put("locations", locations);
