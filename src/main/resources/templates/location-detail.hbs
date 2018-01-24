@@ -1,5 +1,5 @@
 {{#partial "content"}}
-    <p>Here are all the hikes listed in this location:{{location.name}} </p>
+    <p>Viewing current location:{{locations.name}}<br>Here are all the hikes listed:</p>
 
     <ul>
         {{#each hikes}}
@@ -19,8 +19,8 @@
     </ul>
     <a href="/locations/update">Edit this location</a><br>
     <a href="/locations/delete">DELETE this location (no undo)</a>
-
-    <a href="/">Go Back</a>
+    <br>
+    <b><a href="/">Go Back</a></b>
 
 {{/partial}}
 

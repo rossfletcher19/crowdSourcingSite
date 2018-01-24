@@ -1,20 +1,19 @@
 {{#partial "content"}}
 
     {{#if editHike}}
+        <form action="/hikes/update" method="post">
         <h1>Edit this Hike!</h1>
         <form action="/hikes/{{editHike.id}}/update" method="post">
-            <label for="notesOnHike">Edit this hikes notes.</label>
-            <input id="notesOnHike" name="notesOnHike" type="text" value="{{editHike.notesOnHike}}">
+            <label for="notesOnHike">Edit this hikes notes:</label>
+            <input id="notesOnHike" name="notesOnHike" type="text" value="{{notesOnHike}}">
 
     {{else}}
             <h1>Add a new Hike!</h1>
 
         <form action="/hikes/new" method="post">
+        {{#if locations}}
             <label for="nameOfHike">Hike Name: </label>
             <input id="nameOfHike" name="nameOfHike" type="text"><br>
-
-            <label for="locationOfHike">Hike Location: </label>
-            <input id="locationOfHike" name="locationOfHike" type="text"><br>
 
             <label for="notesOnHike">Hike Notes: </label>
             <input id="notesOnHike" name="notesOnHike" type="text"><br>
@@ -22,6 +21,16 @@
             <label for="ratingHike">Hike Rating 1-5 (5 is best): </label>
             <input id="ratingHike" name="ratingHike" type="text"><br>
 
+            <label for="locationId">Give this hike a location:</label>
+            <select id="locationId" name="locationId">
+                {{#each locations}}
+                    <option value="{{id}}">{{name}}</option>
+                {{/each}}
+            </select> <br>
+        <p>Don't see the right location? <a href="/locations/new">Add a new one first!</a> </p>
+        {{else}}
+            <h3>You'll need to add a location before you add a hike. <a href="/locations/new">Add one here.</a></h3>
+        {{/if}}
 
     {{/if}}
         <button type="submit" class="btn btn-default">Go!</button>
