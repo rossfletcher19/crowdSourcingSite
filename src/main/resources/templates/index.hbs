@@ -1,14 +1,13 @@
 {{#partial "content"}}
-
+    <div class="indexHikeList">
     <h1>List of Hikes!</h1>
-
     {{#if hikes}}
         {{#each hikes}}
             <p>{{nameOfHike}} <a href="/locations/{{locationId}}/hikes/{{id}}">read more...</a></p>
         {{/each}}
     {{else}}
         <p>No Hikes Currently!</p>
+        </div>
     {{/if}}
 {{/partial}}
-
 {{> layout.hbs}}

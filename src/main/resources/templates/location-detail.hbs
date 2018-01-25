@@ -1,26 +1,29 @@
 {{#partial "content"}}
-    <p><b>Viewing current location:</b><br>{{locations.name}} <br>Here are all the hikes listed:</p>
+    <h3 class="locHeading">Viewing current location:<br>{{locations.name}} <hr><br>Here are all the hikes listed:</h3>
     <ul>
         {{#each hikes}}
             <li>
-                <h5>Hike Name:</h5>
+                <h4>Hike Name:</h4>
                 <p>{{nameOfHike}}</p>
-                <h5>Here are some notes about the hike:</h5>
+                <h4>Here are some notes about the hike:</h4>
                 <p> {{notesOnHike}}</p>
-                <h5>Hike Rating:</h5>
+                <h4>Hike Rating:</h4>
                     {{ratingHike}}
                 <br>
                 <a href="/hikes/update">Edit this hike!</a><br>
                 <a href="/locations/{{id}}/hikes/{{id}}/delete">DELETE this hike (no undo)</a>
                 </p>
             </li>
+            <hr>
         {{/each}}
     </ul>
-    <a href="/locations/update">Edit this location</a><br>
-    <a href="/locations/{{locations.id}}/delete">DELETE this location (no undo)</a>
-    <br>
-    <b><a href="/">Go Back</a></b>
-
+    <div class="well well-transparent">
+        <a href="/locations/update">Edit this location</a><br>
+        <a href="/locations/{{locations.id}}/delete">DELETE this location (no undo)</a>
+        <<a href="/hikes/delete">DELETE ALL HIKES</a>
+        <hr>
+        <b><a href="/">Go Back</a></b>
+    </div>
 {{/partial}}
 
 {{> layout.hbs}}
