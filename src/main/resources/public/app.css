@@ -1,14 +1,10 @@
-body {
-    height: 100%;
-    margin: 0;
-}
 
 .bg {
     background-image: url("/images/distance.jpg");
-    height: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
     background-size: cover;
+    background-repeat: no-repeat;
+    padding-bottom: 700px;
+
 }
 
 .navbar-brand {
@@ -39,22 +35,26 @@ body {
     background: rgba(46, 51, 56, 0.8);
 }
 
+h1 {
+    color: #36f3f9; /* teal */
+}
+
+h3 {
+    color: #36f3f9; /* teal */
+}
+
+h4 {
+    color: #36f3f9; /* teal */
+}
+
 p {
-    color: white;
+    color: #d0dfe0; /* whitegrey */
 }
 
 a {
-    color: hotpink;
+    color: #f936f3; /* hotpink */
 }
 
-.locHeading {
-    color: white;
-}
-
-.indexHikeList {
-    padding-bottom: 250px;
-}
-
-.hikeFormDiv {
-    padding-bottom: 250px;
+label {
+    color: #d0dfe0; /* whitegrey */
 }
