@@ -164,22 +164,6 @@ public class App {
 
         // Dynamic Routes
 
-        //get a specific location (and the hikes it contains) OK
-        get("/locations/:Id", (req, res) -> {
-            Map<String, Object> model = new HashMap<>();
-            int idOfLocationToFind = Integer.parseInt(req.params("Id"));
-
-            List<Location> locations = locationDao.getAll();
-            model.put("locations", locations);
-
-            Location foundLocation = locationDao.findById(idOfLocationToFind);
-            model.put("foundLocation", foundLocation);
-            List<Hike> allHikesByCategory = locationDao.getAllHikesByLocation(idOfLocationToFind);
-            model.put("hikes", allHikesByCategory);
-
-            return new ModelAndView(model, "location-detail.hbs");
-        }, new HandlebarsTemplateEngine());
-
         //get: show an individual hike that is nested in a location ck
         get("/locations/:location_id/hikes/:hike_id", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
@@ -191,6 +175,22 @@ public class App {
             Hike foundHike = hikeDao.getById(idOfHikeToFind);
             model.put("hike", foundHike);
             return new ModelAndView(model, "hike-detail.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        //get a specific location (and the hikes it contains) OK
+        get("/locations/:id", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int idOfLocationToFind = Integer.parseInt(req.params("id"));
+
+            List<Location> locations = locationDao.getAll();
+            model.put("locations", locations);
+
+            Location foundLocation = locationDao.findById(idOfLocationToFind);
+            model.put("locations", foundLocation);
+            List<Hike> allHikesByCategory = locationDao.getAllHikesByLocation(idOfLocationToFind);
+            model.put("hikes", allHikesByCategory);
+
+            return new ModelAndView(model, "location-detail.hbs");
         }, new HandlebarsTemplateEngine());
 
         //get: delete an individual hike ck
@@ -212,6 +212,15 @@ public class App {
             model.put("locations", allLocations);
 
             return new ModelAndView(model, "success5.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        //get: delete an individual location
+        get("/locations/:location_id/delete", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int idOfLocToDelete = Integer.parseInt(req.params("location_id"));
+            Location deleteLoc = locationDao.findById(idOfLocToDelete);
+            locationDao.deleteById(idOfLocToDelete);
+            return new ModelAndView(model, "success6.hbs");
         }, new HandlebarsTemplateEngine());
 
     }
