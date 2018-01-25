@@ -80,7 +80,7 @@ public class Sql2oLocationDaoTest {
     @Test
     public void updateChangesLocationContent() throws Exception {
         String initialCityName = "Portland";
-        Location location = new Location(initialCityName, 1);
+        Location location = new Location(initialCityName);
         locationDao.add(location);
 
         locationDao.update(location.getId(), "SW Portland");
@@ -109,6 +109,6 @@ public class Sql2oLocationDaoTest {
 
 
     public Location setupNewLocation() {
-        return new Location("Estacada", 0);
+        return new Location("Estacada");
     }
 }
