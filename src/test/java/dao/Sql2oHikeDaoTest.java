@@ -15,9 +15,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
-/**
- * Created by Guest on 1/18/18.
- */
 public class Sql2oHikeDaoTest {
 
     private Sql2oHikeDao hikeDao;

@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,9 +11,7 @@ import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 import static spark.Spark.*;
 
-/**
- * Created by Guest on 1/18/18.
- */
+
 public class App {
 
     public static void main(String[] args) {
@@ -87,10 +84,6 @@ public class App {
             model.put("editHike", true);
             return new ModelAndView(model, "hike-form.hbs");
         }, new HandlebarsTemplateEngine());
-
-
-       // POST ROUTES
-
 
 
         //post: process a form to update a hike ck

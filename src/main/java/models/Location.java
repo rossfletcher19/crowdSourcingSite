@@ -1,10 +1,6 @@
 package models;
 
-import javax.print.DocFlavor;
 
-/**
- * Created by Guest on 1/18/18.
- */
 public class Location {
 
     private String name;

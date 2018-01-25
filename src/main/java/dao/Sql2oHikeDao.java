@@ -8,9 +8,6 @@ import org.sql2o.Sql2oException;
 
 import java.util.List;
 
-/**
- * Created by Guest on 1/18/18.
- */
 public class Sql2oHikeDao implements HikeDao {
 
 
