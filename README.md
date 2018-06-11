@@ -16,7 +16,7 @@ _With the tools you have been given and accepted to master, use them precisely, 
 * _Download or fork and clone from [Here](https://github.com/rossfletcher19/crowdSourcingSite)_
 * _Make sure you have Java installed and if not use [THIS SETUP MATERIAL](https://www.learnhowtoprogram.com/java/getting-started-with-java-39a9253a-41da-43f5-b50b-a922b3f613f5/installing-java-2990cd6c-3c11-4109-a6f9-2cd8f9579172) to install._
 * _Open project folder in an IDEA tool like [IntelliJ IDEA](https://www.jetbrains.com/idea/)_
-* _Let Gradle build and then Run App.java located in src>main>java, navigate to http://localhost:4567/ in your web browser.
+* _Let Gradle build and then Run App.java located in src>main>java, navigate to http://localhost:4567/ in your web browser._
 * _Contribute your ideas and knowledge in code to improve functionality and app stability._
 
 ## Known Bugs
